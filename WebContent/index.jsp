@@ -39,7 +39,6 @@
 		</nav>
 		<section>
 			<h1>Bienvenido a nuestra panadería !</h1>
-			<c:redirect url="/view/conectarse.jsp"/>
 			<img src="images/panierApain.PNG" height="350px" width="550px" /> 
 		</section>
 		<footer>
