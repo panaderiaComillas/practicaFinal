@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class M_DaoAssaisonner extends M_DaoGenerique{
+public class M_DaoIngredient extends M_DaoGenerique{
 
 	public void insertContador(Contador contador) {
 		Connection connection = null;
