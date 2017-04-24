@@ -1,21 +1,18 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class M_DaoSauce extends M_DaoGenerique{
+import metier.M_Sauce;
 
-	public void insertContador(Contador contador) {
-		Connection connection = null;
-		PreparedStatement prepStatement = null;
+public class M_DaoSauce extends M_DaoGenerique {
+
+	public void insertSauce(M_Sauce sauce) {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
-			prepStatement = connection.prepareStatement("INSERT INTO ANTOINE.CONTADOR(ID,ESTILO) VALUES(?,?)");
-			prepStatement.setString(1, contador.getId());
-			prepStatement.setInt(2, contador.getEstilo());
+			prepStatement = connection.prepareStatement("INSERT INTO SAUCE(NOMSAUCE) VALUES(?)");
+			prepStatement.setString(1, sauce.getNomSauce());
 			prepStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,37 +34,70 @@ public class M_DaoSauce extends M_DaoGenerique{
 		}
 	}
 
-	public Contador getContadorByID(String id) {
-		Connection connection = null;
-		PreparedStatement prepStatement = null;
-		Contador contador = null;
+	public M_Sauce getSauceByID(int id) {
+		M_Sauce sauce = null;
 		ResultSet result = null;
 		try {
-			connection = DriverManager.getConnection("jdbc:derby:C:/eclipse-jee-neon-2-win32/MyDB");
-			prepStatement = connection.prepareStatement("SELECT ESTILO, VISITAS FROM ANTOINE.CONTADOR WHERE ID=?");
-			prepStatement.setString(1, id);
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM SAUCE WHERE IDSAUCE=?");
+			prepStatement.setInt(1, id);
 			result = prepStatement.executeQuery();
 			result.next();
-			contador = new Contador(id, result.getInt("estilo"), result.getInt("visitas"));
+			sauce = new M_Sauce(id, result.getString("nomSauce"));
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return contador;
+		return sauce;
 	}
-	
-	public Contador updateContador(Contador contador){
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
+
+	public M_Sauce updateSauce(M_Sauce sauce) {
 		try {
-			connection=DriverManager.getConnection("jdbc:derby:C:/eclipse-jee-neon-2-win32/MyDB");
-			prepStatement=connection.prepareStatement("UPDATE ANTOINE.CONTADOR SET VISITAS=? WHERE ID=?");
-			prepStatement.setInt(1, contador.getVisitas());
-			prepStatement.setString(1, contador.getId());
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("UPDATE SAUCE SET NOMSAUCE=? WHERE IDSAUCE=?");
+			prepStatement.setString(1, sauce.getNomSauce());
+			prepStatement.setInt(2, sauce.getIdSauce());
 			prepStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return contador;
+		return sauce;
 	}
 
 }

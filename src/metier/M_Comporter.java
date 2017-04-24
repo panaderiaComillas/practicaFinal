@@ -5,7 +5,7 @@ public class M_Comporter {
 	private int idMenu; // type : int
     private int idCommande; // type : int
 
-    M_Comporter(int idMenu, int idCommande) {
+    public M_Comporter(int idMenu, int idCommande) {
         this.idMenu = idMenu;
         this.idCommande = idCommande;
     }

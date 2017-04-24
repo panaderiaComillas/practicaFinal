@@ -5,7 +5,7 @@ public class M_Produit {
 	private int idProduit; // type : int
     private String nomProduit; // type : String
 
-    M_Produit(int idProduit, String nomProduit) {
+    public M_Produit(int idProduit, String nomProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
     }

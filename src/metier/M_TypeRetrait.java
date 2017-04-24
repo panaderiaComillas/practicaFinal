@@ -5,7 +5,7 @@ public class M_TypeRetrait {
 	private int idTypeRetrait; // type : int
     private String nomTypeRetrait; // ADMINISTRATEUR, UTILISATEUR
 
-    M_TypeRetrait (int idTypeRetrait, String nomTypeRetrait) {
+    public M_TypeRetrait (int idTypeRetrait, String nomTypeRetrait) {
         this.idTypeRetrait = idTypeRetrait;
         this.nomTypeRetrait = nomTypeRetrait;
     }

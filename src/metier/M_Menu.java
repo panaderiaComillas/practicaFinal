@@ -6,7 +6,7 @@ public class M_Menu {
     private float prixMenu; // type : float
     private String nomMenu; // type : String
 
-    M_Menu(int idMenu, float prixMenu, String nomMenu) {
+    public M_Menu(int idMenu, float prixMenu, String nomMenu) {
         this.idMenu = idMenu;
         this.prixMenu = prixMenu;
         this.nomMenu = nomMenu;

@@ -7,11 +7,15 @@ public class M_Commande {
 	private int idCommande; // type : int
     private Date dateHeure; //type : datetime
     private Date heureRetrait; //type : date
+    
+//    private Timestamp dateHeure; //type : datetime
+//    private Time heureRetrait; //type : date
+    
     private int idUser; //type : int
     private M_TypeRetrait typeRetrait; //objet TypeRetrait
     private String etatCommande; //// type : varchar
     
-    M_Commande(int idCommande, Date dateHeure, Date heureRetrait, int idUser, M_TypeRetrait typeRetrait, String etatCommande) {
+    public M_Commande(int idCommande, Date dateHeure, Date heureRetrait, int idUser, M_TypeRetrait typeRetrait, String etatCommande) {
         this.idCommande = idCommande;
         this.dateHeure = dateHeure;
         this.heureRetrait = heureRetrait;

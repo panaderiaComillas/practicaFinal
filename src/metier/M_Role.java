@@ -5,7 +5,7 @@ public class M_Role {
 	private int idRole; // type : int
     private  String nomRole; // ADMINISTRATEUR, UTILISATEUR
 
-    M_Role(int idRole, String nomRole) {
+    public M_Role(int idRole, String nomRole) {
         this.idRole = idRole;
         this.nomRole = nomRole;
     }

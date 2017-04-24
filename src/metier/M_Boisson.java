@@ -4,7 +4,7 @@ public class M_Boisson extends M_Produit{
 	
 	private float volume; // type : float
 
-    M_Boisson(int idProduit, String nomProduit, float volume) {        
+    public M_Boisson(int idProduit, String nomProduit, float volume) {        
     	super(idProduit, nomProduit);
         this.volume = volume;        
     }

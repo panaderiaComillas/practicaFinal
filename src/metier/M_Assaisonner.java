@@ -5,7 +5,7 @@ public class M_Assaisonner {
 	private int idProduit; // type : int
     private int idSauce; // type : int
     
-    M_Assaisonner(int idProduit, int idSauce) {
+    public M_Assaisonner(int idProduit, int idSauce) {
         this.idProduit = idProduit;
         this.idSauce = idSauce;
     }

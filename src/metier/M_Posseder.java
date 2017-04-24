@@ -5,7 +5,7 @@ public class M_Posseder {
 	private int idMenu; // type : int
     private int idProduit; // type : int
 
-    M_Posseder(int idMenu, int idProduit) {
+    public M_Posseder(int idMenu, int idProduit) {
         this.idMenu = idMenu;
         this.idProduit = idProduit;
     }

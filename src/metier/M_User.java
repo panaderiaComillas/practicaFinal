@@ -11,7 +11,11 @@ public class M_User {
     private String mdp; //type : String encodé en sha1
     private M_Role role; //objet role
 
-    M_User (int idUser, String nomUser, String prenomUser, String email, String tel, String login, String mdp, M_Role role) {
+    public M_User(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public M_User (int idUser, String nomUser, String prenomUser, String email, String tel, String login, String mdp, M_Role role) {
         this.idUser = idUser;
         this.nomUser = nomUser;
         this.prenomUser = prenomUser;

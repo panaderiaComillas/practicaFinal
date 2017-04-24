@@ -5,7 +5,7 @@ public class M_Sauce {
 	private int idSauce; // type : int
     private String nomSauce; // type : String
 
-    M_Sauce(int idSauce, String nomSauce) {
+    public M_Sauce(int idSauce, String nomSauce) {
         this.idSauce = idSauce;
         this.nomSauce = nomSauce;
     }
