@@ -3,16 +3,28 @@ package dao;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import metier.M_Sauce;
 
 public class M_DaoSauce extends M_DaoGenerique {
+	
+	private void objetVersEnregistrement(M_Sauce sauce) throws SQLException {
+		prepStatement.setString(1, sauce.getNomSauce());
+	}
+	
+	private M_Sauce enregistrementVersObjet(ResultSet result) throws SQLException {
+		M_Sauce sauce;
+		sauce = new M_Sauce(result.getInt("idSauce"), result.getString("nomSauce"));
+		return sauce;
+	}
 
 	public void insertSauce(M_Sauce sauce) {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			prepStatement = connection.prepareStatement("INSERT INTO SAUCE(NOMSAUCE) VALUES(?)");
-			prepStatement.setString(1, sauce.getNomSauce());
+			objetVersEnregistrement(sauce);
 			prepStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,7 +55,7 @@ public class M_DaoSauce extends M_DaoGenerique {
 			prepStatement.setInt(1, id);
 			result = prepStatement.executeQuery();
 			result.next();
-			sauce = new M_Sauce(id, result.getString("nomSauce"));
+			sauce = enregistrementVersObjet(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -71,12 +83,51 @@ public class M_DaoSauce extends M_DaoGenerique {
 		}
 		return sauce;
 	}
+	
+	public List<M_Sauce> getSauces() {
+		List<M_Sauce> sauces = new ArrayList<M_Sauce>();
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM PRODUIT");
+			result = prepStatement.executeQuery();
+			while (result.next()) {
+				M_Sauce sauce = enregistrementVersObjet(result);
+				sauces.add(sauce);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return sauces;
+	}
 
 	public M_Sauce updateSauce(M_Sauce sauce) {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			prepStatement = connection.prepareStatement("UPDATE SAUCE SET NOMSAUCE=? WHERE IDSAUCE=?");
-			prepStatement.setString(1, sauce.getNomSauce());
+			objetVersEnregistrement(sauce);
 			prepStatement.setInt(2, sauce.getIdSauce());
 			prepStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -99,5 +150,4 @@ public class M_DaoSauce extends M_DaoGenerique {
 		}
 		return sauce;
 	}
-
 }

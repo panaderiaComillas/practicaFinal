@@ -1,5 +1,7 @@
 package dao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -143,6 +145,45 @@ public class M_DaoUser extends M_DaoGenerique {
 		return utilisateur;
 	}
 	
+	public static byte[] calculerValeurDeHachage(String algorithme, String monMessage) {
+		byte[] digest = null;
+		try {
+			MessageDigest sha = MessageDigest.getInstance(algorithme);
+		    sha.update(monMessage.getBytes());
+		    digest = sha.digest();
+		    System.out.println("algorithme : " + algorithme);
+		    System.out.println(bytesToHex(digest));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return digest;
+	}
+	
+	public static String bytesToHex(byte[] b) {
+		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+		StringBuffer buffer = new StringBuffer();
+		for (int j = 0; j < b.length; j++) {
+			buffer.append(hexDigits[(b[j] >> 4) & 0x0f]);
+			buffer.append(hexDigits[b[j] & 0x0f]);
+		}
+		return buffer.toString();
+	}
+	
+	public String stringToSHA1(String text){
+		String hashText="";
+		byte[] digest = null;
+		try {
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+		    sha.update(text.getBytes());
+		    digest = sha.digest();
+		    hashText=bytesToHex(digest);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return hashText;
+	}
+	
 	public M_User verifierLogin(String login, String mdp) {
 		M_User utilisateur = null;
 		ResultSet result = null;
@@ -154,8 +195,8 @@ public class M_DaoUser extends M_DaoGenerique {
 			prepStatement.setString(2, mdp);
 			result = prepStatement.executeQuery();
 			result.next();
-			String mdp_sha1 = AeSimpleSHA1.SHA1(mdp); 
-			if (login.equals(result.getString("login")) && mdp_sha1.equals(result.getString("sha1($mdp)"))) {
+			String mdp_sha1 = stringToSHA1(mdp); 
+			if (login.equals(result.getString("login")) && mdp_sha1.equals(result.getString("mdp"))) {
 				utilisateur = enregistrementVersObjet(result);
             }
 		} catch (SQLException e) {
