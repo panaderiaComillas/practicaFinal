@@ -75,7 +75,7 @@ public class M_DaoRole extends M_DaoGenerique {
 	public M_Role updateRole(M_Role role) {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
-			prepStatement = connection.prepareStatement("UPDATE BOISSON SET NOMROLE=? WHERE IDROLE=?");
+			prepStatement = connection.prepareStatement("UPDATE ROLE SET NOMROLE=? WHERE IDROLE=?");
 			prepStatement.setString(1, role.getNomRole());
 			prepStatement.setInt(2, role.getIdRole());
 			prepStatement.executeUpdate();

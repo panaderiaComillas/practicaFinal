@@ -76,7 +76,7 @@ public class M_DaoPosseder extends M_DaoGenerique {
 	public M_Posseder updatePosseder(M_Posseder posseder) {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
-			prepStatement = connection.prepareStatement("UPDATE BOISSON SET IDPRODUIT=? WHERE IDMENU=?");
+			prepStatement = connection.prepareStatement("UPDATE POSSEDER SET IDPRODUIT=? WHERE IDMENU=?");
 			prepStatement.setInt(1, posseder.getIdProduit());
 			prepStatement.setInt(2, posseder.getIdMenu());
 			prepStatement.executeUpdate();
