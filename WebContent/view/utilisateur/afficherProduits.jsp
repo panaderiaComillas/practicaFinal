@@ -38,10 +38,10 @@
 				for (M_Sandwich unSandwich: listSandwichs) {
 					System.out.println("<tr>");
 					System.out.println("<td>"+unSandwich.getNomProduit());
-		            if(unSandwich.getTemperaturePain()==0){
+		            if(!unSandwich.isTemperaturePain()){
 		            	System.out.println(" froid</td>");
 		            }  
-		            else if(unSandwich.getTemperaturePain()==1)
+		            else if(unSandwich.isTemperaturePain())
 		            {
 		            	System.out.println(" chaud</td>");
 		            }

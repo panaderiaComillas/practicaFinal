@@ -38,7 +38,7 @@ public class C_Formule extends HttpServlet {
 
 		M_DaoMenu daoFormule = new M_DaoMenu();
         //récupération de la liste
-        List<M_Menu> formules = daoFormule.getAll();
+        List<M_Menu> formules = daoFormule.getMenus();
         request.setAttribute("listFormules", formules);
 
     	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
