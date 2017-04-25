@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,11 +54,11 @@ public class C_Commander2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		String maVue = "/view/utilisateur/commander2.jsp";
+		
 		String nomMenu=request.getParameter("menus");
 		request.setAttribute("nomMenu", nomMenu);
 		
-		String maVue = "/view/utilisateur/commander2.jsp";
-
 		M_DaoMenu daoFormule = new M_DaoMenu();
         //récupération de la liste
         List<M_Menu> formules = daoFormule.getMenus();
@@ -92,6 +93,9 @@ public class C_Commander2 extends HttpServlet {
         //récupération de la liste
         List<M_Boisson> boissons = daoBoisson.getBoissons();
         request.setAttribute("listBoissons", boissons);
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
+		dispatcher.forward(request,response);	
 
 	}
 

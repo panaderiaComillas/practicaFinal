@@ -84,7 +84,7 @@ public class M_DaoTypeRetrait extends M_DaoGenerique {
 		return typeRetrait;
 	}
 	
-	public List<M_TypeRetrait> getTypesRetrait() {
+	public List<M_TypeRetrait> getTypeRetraits() {
 		List<M_TypeRetrait> typesRetrait = new ArrayList<M_TypeRetrait>();
 		ResultSet result = null;
 		try {
