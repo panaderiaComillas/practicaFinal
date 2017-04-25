@@ -17,12 +17,12 @@
 		<nav> <%@include file="/view/templates/menu.jsp"%>
 		</nav>
 		<section>
-			<h1 style="color: red;">Formules du Midi</h1>
+			<h1 style="color: red;">Fórmulas</h1>
 			<%
 				List<M_Menu> listFormules= (List<M_Menu>)request.getAttribute("listFormules");
 				for (M_Menu uneFormule: listFormules) {
-					System.out.println("<div style='font-size:17px;'>"+ "- "+uneFormule.getNomMenu() + " : " + uneFormule.getPrixMenu() + " €<div>");
-		            System.out.println("<br/>");
+					out.println("<div style='font-size:17px;'>"+ "- "+uneFormule.getNomMenu() + " : " + uneFormule.getPrixMenu() + " €<div>");
+		            out.println("<br/>");
 		        }
 			%> 
 		</section>

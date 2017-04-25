@@ -4,7 +4,7 @@
 		<h2>Navegación</h2>
 		</p>
 		<p class="note">
-		<li><a href="">Página Principal</a></li>
+		<li><a href="${pageContext.request.contextPath}/index.jsp"">Página Principal</a></li>
 		<hr />
 		<li><a href="${pageContext.request.contextPath}/C_Inscription">Registrarse</a></li>
 		<br>
@@ -18,6 +18,6 @@
 		<br>
 		<li><a href="${pageContext.request.contextPath}/C_Produit">Nuestros Productos</a></li>
 		<hr />
-		<li><a href="${pageContext.request.contextPath}/C_Commander">Ordenar</a></li>
+		<li><a href="${pageContext.request.contextPath}/C_Commander1">Ordenar</a></li>
 	</ul>
 </div>

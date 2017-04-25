@@ -21,9 +21,9 @@
 		</nav>
 		<section>
 		<ul id="menu">
-			<li class="onglet_1"><a id="boutonSandwich">Sandwichs</a></li>
-			<li class="onglet_2"><a id="boutonBoisson">Boissons</a></li>
-			<li class="onglet_3"><a id="boutonDessert">Desserts</a></li>
+			<li class="onglet_1"><a id="boutonSandwich">Bocadillos</a></li>
+			<li class="onglet_2"><a id="boutonBoisson">Bebidas</a></li>
+			<li class="onglet_3"><a id="boutonDessert">Postres</a></li>
 		</ul>
 
 		<div id="divSandwich" style="display: block">
@@ -31,39 +31,39 @@
 			<table border="1px"
 				style="display: inline-block; vertical-align: top;">
 				<tr>
-					<th>Sandwichs</th>
+					<th>Bocadillos</th>
 				</tr>
 				<%
 				List<M_Sandwich> listSandwichs= (List<M_Sandwich>)request.getAttribute("listSandwichs");
 				for (M_Sandwich unSandwich: listSandwichs) {
-					System.out.println("<tr>");
-					System.out.println("<td>"+unSandwich.getNomProduit());
+					out.println("<tr>");
+					out.println("<td>"+unSandwich.getNomProduit());
 		            if(!unSandwich.isTemperaturePain()){
-		            	System.out.println(" froid</td>");
+		            	out.println(" frío</td>");
 		            }  
 		            else if(unSandwich.isTemperaturePain())
 		            {
-		            	System.out.println(" chaud</td>");
+		            	out.println(" caliente</td>");
 		            }
-		            System.out.println("</tr>");
+		            out.println("</tr>");
 		        }
 				%>
 			</table>
 			<table border="1px"
 				style="display: inline-block; vertical-align: top;">
 				<tr>
-					<th>Ingrédients</th>
+					<th>Ingredientes</th>
 				</tr>
 				<%
 				List<M_Ingredient> listIngredients= (List<M_Ingredient>)request.getAttribute("listIngredients");
 				for (M_Ingredient unIngredient: listIngredients) {
-					System.out.println("<tr>");
-					System.out.println("<td>"+unIngredient.getNomIngredient()+"</td>");
-		            System.out.println("</tr>");
+					out.println("<tr>");
+					out.println("<td>"+unIngredient.getNomIngredient()+"</td>");
+		            out.println("</tr>");
 		        }
 				%>
 			</table>
-			<img src="../vues/images/americain.jpg" height="240px" width="360px"
+			<img src="./images/americain.jpg" height="240px" width="360px"
 				style="float: right" />
 		</div>
 
@@ -72,18 +72,18 @@
 			<table border="1px"
 				style="display: inline-block; vertical-align: top;">
 				<tr>
-					<th>Desserts</th>
+					<th>Postres</th>
 				</tr>
 				<%
 				List<M_Dessert> listDesserts= (List<M_Dessert>)request.getAttribute("listDesserts");
 				for (M_Dessert unDessert: listDesserts) {
-					System.out.println("<tr>");
-					System.out.println("<td>"+unDessert.getNomProduit()+"</td>");
-		            System.out.println("</tr>");
+					out.println("<tr>");
+					out.println("<td>"+unDessert.getNomProduit()+"</td>");
+		            out.println("</tr>");
 		        }
 				%>
 			</table>
-			<img src="../vues/images/desserts.jpg" height="320px" width="480px"
+			<img src="./images/desserts.jpg" height="320px" width="480px"
 				style="float: right" />
 		</div>
 
@@ -92,20 +92,20 @@
 			<table border="1px"
 				style="display: inline-block; vertical-align: top;">
 				<tr>
-					<th>Boisson</th>
-					<th>Volume</th>
+					<th>Bebida</th>
+					<th>Cantidad</th>
 				</tr>
 				<%
 				List<M_Boisson> listBoissons= (List<M_Boisson>)request.getAttribute("listBoissons");
 				for (M_Boisson uneBoisson: listBoissons) {
-					System.out.println("<tr>");
-					System.out.println("<td>"+uneBoisson.getNomProduit()+"</td>");
-					System.out.println("<td>"+uneBoisson.getVolume()+" cl</td>");
-		            System.out.println("</tr>");
+					out.println("<tr>");
+					out.println("<td>"+uneBoisson.getNomProduit()+"</td>");
+					out.println("<td>"+uneBoisson.getVolume()+" cl</td>");
+		            out.println("</tr>");
 		        }
 				%>
 			</table>
-			<img src="../vues/images/boissons.jpg" height="170px" width="500px"
+			<img src="./images/boissons.jpg" height="170px" width="500px"
 				style="float: right" />
 		</div>
 
