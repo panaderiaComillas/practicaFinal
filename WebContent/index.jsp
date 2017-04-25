@@ -10,39 +10,17 @@
 <body>
 	<div id="global">
 		<header>
-			<%@include file="view/templates/header.jsp" %>
+			<%@include file="/view/templates/header.jsp" %>
 		</header>
 		<nav>
-		<div id="gauche">
-			<ul class="menugauche">
-				<p>
-				<h2>Navegación</h2>
-				</p>
-				<p class="note">
-				<li><a href="">Página Principal</a></li>
-				<hr />
-				<li><a href="view/registrarse.jsp">Registrarse</a></li>
-				<br>
-				<li><a href="view/conectarse.jsp">Conectarse</a></li>
-				<hr />
-				<li><a href="view/misInformaciones.jsp">Mis Informaciones</a></li>
-				<br>
-				<li><a href="view/misPedidos.jsp">Mis Pedidos</a></li>
-				<hr />
-				<li><a href="view/formulas.jsp">Nuestras Fórmulas</a></li>
-				<br>
-				<li><a href="view/productos.jsp">Nuestros Productos</a></li>
-				<hr />
-				<li><a href="view/ordenar.jsp">Ordenar</a></li>
-			</ul>
-		</div>
+		<%@include file="/view/templates/menu.jsp" %>
 		</nav>
 		<section>
 			<h1>Bienvenido a nuestra panadería !</h1>
 			<img src="images/panierApain.PNG" height="350px" width="550px" /> 
 		</section>
 		<footer>
-			<%@include file="view/templates/footer.jsp"%>
+			<%@include file="/view/templates/footer.jsp"%>
 		</footer>
 	</div>
 </body>
