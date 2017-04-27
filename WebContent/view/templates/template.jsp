@@ -3,7 +3,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="../style.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>La Cesta de Pan</title>
 </head>
 <body>

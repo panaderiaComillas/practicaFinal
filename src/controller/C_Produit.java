@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import dao.M_DaoBoisson;
 import dao.M_DaoDessert;
 import dao.M_DaoIngredient;
-import dao.M_DaoProduit;
 import dao.M_DaoSandwich;
 import metier.M_Boisson;
 import metier.M_Dessert;

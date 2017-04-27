@@ -28,7 +28,7 @@
 			        return false;
 			    }
 			
-			    funtion valeur(){
+			    function valeur(){
 			        var ok = 1;
 			        if (validerChoixSandichs('menus')) {
 			            document.getElementById('erreur').style.display = "none";

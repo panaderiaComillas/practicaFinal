@@ -176,7 +176,7 @@ public class M_DaoUser extends M_DaoGenerique {
 			MessageDigest sha = MessageDigest.getInstance("SHA-1");
 		    sha.update(text.getBytes());
 		    digest = sha.digest();
-		    hashText=bytesToHex(digest);
+		    hashText=bytesToHex(digest).toLowerCase();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -192,10 +192,11 @@ public class M_DaoUser extends M_DaoGenerique {
 			prepStatement = connection.prepareStatement(
 					"SELECT * FROM USER U INNER JOIN ROLE R ON U.IDROLE=R.IDROLE WHERE LOGIN = ? AND MDP = ?");
 			prepStatement.setString(1, login);
-			prepStatement.setString(2, mdp);
+			String mdp_sha1 = stringToSHA1(mdp); 
+			prepStatement.setString(2, mdp_sha1);
 			result = prepStatement.executeQuery();
 			result.next();
-			String mdp_sha1 = stringToSHA1(mdp); 
+			//String mdp_sha1 = stringToSHA1(mdp); 
 			if (login.equals(result.getString("login")) && mdp_sha1.equals(result.getString("mdp"))) {
 				utilisateur = enregistrementVersObjet(result);
             }

@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -94,8 +93,7 @@ public class C_Commander2 extends HttpServlet {
         List<M_Boisson> boissons = daoBoisson.getBoissons();
         request.setAttribute("listBoissons", boissons);
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
-		dispatcher.forward(request,response);	
+        this.getServletContext().getRequestDispatcher(maVue).forward(request,response);	
 
 	}
 
