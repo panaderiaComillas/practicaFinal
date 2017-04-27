@@ -43,8 +43,7 @@
 			    }    
 			</script>
 
-		<form method="post"
-			action="${pageContext.request.contextPath}/C_Commander2">
+		<form method="post"	action="${pageContext.request.contextPath}/C_Commander2">
 			<h1 style="color: red;">Ordenar</h1>
 			<fieldset>
 				<legend>Menu</legend>
@@ -55,8 +54,8 @@
 				<%
 					List<M_Menu> listFormules= (List<M_Menu>)request.getAttribute("listFormules");
 					for (M_Menu uneFormule: listFormules) {
-						out.println("<input style='float: none ;' type='radio' name='menus' value='menu'"
-		                + uneFormule.getIdMenu() + "' id='menu" + uneFormule.getIdMenu()
+						out.println("<input style='float: none ;' type='radio' name='menus' value='"
+		                + uneFormule.getNomMenu() + "' id='menu" + uneFormule.getIdMenu()
 		                + "'/> <label style='float: none ;' for='menu" + uneFormule.getIdMenu()
 		                + "'>" + uneFormule.getNomMenu() + " : " + uneFormule.getPrixMenu()
 		                + " €</label>");					

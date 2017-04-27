@@ -89,7 +89,7 @@ public class M_DaoSauce extends M_DaoGenerique {
 		ResultSet result = null;
 		try {
 			connection = DriverManager.getConnection(url, user, password);
-			prepStatement = connection.prepareStatement("SELECT * FROM PRODUIT");
+			prepStatement = connection.prepareStatement("SELECT * FROM SAUCE");
 			result = prepStatement.executeQuery();
 			while (result.next()) {
 				M_Sauce sauce = enregistrementVersObjet(result);

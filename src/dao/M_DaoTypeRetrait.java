@@ -90,7 +90,7 @@ public class M_DaoTypeRetrait extends M_DaoGenerique {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			prepStatement = connection.prepareStatement(
-					"SELECT * FROM SANDWICH S INNER JOIN PRODUIT P ON S.IDPRODUIT=P.IDPRODUIT");
+					"SELECT * FROM TYPERETRAIT");
 			result = prepStatement.executeQuery();
 			while (result.next()) {
 				M_TypeRetrait typeRetrait = enregistrementVersObjet(result);

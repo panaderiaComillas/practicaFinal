@@ -63,11 +63,6 @@ public class C_Commander2 extends HttpServlet {
         List<M_Menu> formules = daoFormule.getMenus();
         request.setAttribute("listFormules", formules);
 
-        M_DaoSandwich daoSandwich = new M_DaoSandwich();
-        //récupération de la liste
-        List<M_Sandwich> sandwichs = daoSandwich.getSandwichs();
-        request.setAttribute("listSandwichs", sandwichs);
-
         M_DaoTypeRetrait daoTypeRetrait = new M_DaoTypeRetrait();
         //récupération de la liste
         List<M_TypeRetrait> typeRetraits = daoTypeRetrait.getTypeRetraits();
