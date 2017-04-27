@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.List" %>
+<%@page import="metier.M_Commande" %>
+<%@page import="dao.M_DaoProduit" %>
+<%@page import="metier.M_Produit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,26 +21,31 @@
 		<h1 style="color: red;">Pedidos efectuados</h1>
 		<table id="tablePedidos">
 			<tr>
-				<th class="nowrapCell">N° de pedido</th>
+				<th class="nowrapCell">NÂ° de pedido</th>
 				<th class="nowrapCell">Data/hora pedido</th>
 				<th class="nowrapCell">Hora de retirada</th>
 				<th class="nowrapCell">Tipo de retirada</th>
 				<th>Productos</th>
 			</tr>
-			<tr>
-				<td class="nowrapCell">123456</td>
-				<td class="nowrapCell">01/03/2017 9h25</td>
-				<td class="nowrapCell">11h30</td>
-				<td class="nowrapCell">Para llevar</td>
-				<td>Tortilla, Coca Cola, Napolitano</td>
-			</tr>
-			<tr>
-				<td class="nowrapCell">789101112</td>
-				<td class="nowrapCell">02/03/2017 10h52</td>
-				<td class="nowrapCell">12h15</td>
-				<td class="nowrapCell">En el sitio</td>
-				<td>Pizza, Cerveza, Roscos</td>
-			</tr>
+			
+			<%
+			List<M_Commande> listCommandes= (List<M_Commande>)request.getAttribute("listCommandes");
+			for (M_Commande uneCommande: listCommandes) {
+				out.println("<tr>");
+				out.println("<td class=\"nowrapCell\">"+uneCommande.getIdCommande()+"</td>");
+				out.println("<td class=\"nowrapCell\">"+uneCommande.getDateHeure()+"</td>");
+				out.println("<td class=\"nowrapCell\">"+uneCommande.getHeureRetrait()+"</td>");
+				out.println("<td class=\"nowrapCell\">"+uneCommande.getTypeRetrait().getNomTypeRetrait()+"</td>");
+	            out.println("<td>");
+	            M_DaoProduit daoProduit = new M_DaoProduit();
+	            List<M_Produit> listProduits = daoProduit.getProduitsCommandeByIdCommande(uneCommande.getIdCommande());
+	            for (M_Produit unProduit: listProduits) {
+	            	out.println(unProduit.getNomProduit()+", ");
+	            }
+	            out.println("</td>");
+	            out.println("</tr>");
+	        }
+    %>
 		</table>
 		</section>
 		<footer> <%@include file="/view/templates/footer.jsp"%>

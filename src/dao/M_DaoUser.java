@@ -112,7 +112,7 @@ public class M_DaoUser extends M_DaoGenerique {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			prepStatement = connection.prepareStatement(
-					"SELECT * FROM USER U LEFT OUTER JOIN ROLE R ON R.IDROLE = U.IDROLE WHERE U.LOGIN=?");
+					"SELECT * FROM USER U INNER JOIN ROLE R ON R.IDROLE = U.IDROLE WHERE U.LOGIN=?");
 			prepStatement.setString(1, login);
 			result = prepStatement.executeQuery();
 			result.next();
@@ -196,7 +196,6 @@ public class M_DaoUser extends M_DaoGenerique {
 			prepStatement.setString(2, mdp_sha1);
 			result = prepStatement.executeQuery();
 			result.next();
-			//String mdp_sha1 = stringToSHA1(mdp); 
 			if (login.equals(result.getString("login")) && mdp_sha1.equals(result.getString("mdp"))) {
 				utilisateur = enregistrementVersObjet(result);
             }
@@ -312,14 +311,15 @@ public class M_DaoUser extends M_DaoGenerique {
 		return utilisateurs;
 	}
 
-	public M_User updateUser(M_User utilisateur) {
+	public int updateUser(M_User utilisateur) {
+		int retour = 0;
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			prepStatement = connection.prepareStatement(
 					"UPDATE USER SET NOMUSER=?,PRENOMUSER=?,EMAIL=?,TEL=?,LOGIN=?,MDP=?,IDROLE=? WHERE IDUSER=?");
 			objetVersEnregistrement(utilisateur);
 			prepStatement.setInt(8, utilisateur.getIdUser());
-			prepStatement.executeUpdate();
+			retour = prepStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -338,7 +338,7 @@ public class M_DaoUser extends M_DaoGenerique {
 				}
 			}
 		}
-		return utilisateur;
+		return retour;
 	}
 
 }
