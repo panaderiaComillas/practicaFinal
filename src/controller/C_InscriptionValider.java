@@ -60,23 +60,19 @@ public class C_InscriptionValider extends HttpServlet {
 		String tel=request.getParameter("tel");
 		request.setAttribute("tel", tel);
 		
-		/*
 		if(nom==""||prenom==""||mail==""||login==""||mdp==""){
 			request.setAttribute("error", "error en el ingreso !");
 			maVue = "/view/utilisateur/registrarse.jsp";
-		}
-		
-		if((mdp)!=(mdp2)){
+		}else if((mdp)!=(mdp2)){
 			request.setAttribute("error", "las contraseñas son diferentes !");
-			maVue = "/view/utilisateur/registrarse.jsp";		
-		}
-		*/
-		M_Role role= new M_Role(2,"Client");
-				
-		M_User unePersonne = new M_User(0, nom, prenom, mail, tel, login, mdp, role);
-		M_DaoUser daoPers = new M_DaoUser();
-		daoPers.insertUser(unePersonne);
-				
+			maVue = "/view/utilisateur/registrarse.jsp";	
+			}else{
+				M_Role role= new M_Role(2,"Client");
+						
+				M_User unePersonne = new M_User(0, nom, prenom, mail, tel, login, mdp, role);
+				M_DaoUser daoPers = new M_DaoUser();
+				daoPers.insertUser(unePersonne);
+			}	
         
         this.getServletContext().getRequestDispatcher(maVue).forward(request,response);	
 	}
