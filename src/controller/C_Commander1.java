@@ -35,9 +35,8 @@ public class C_Commander1 extends HttpServlet {
         
         String maVue = "/view/utilisateur/commander1.jsp";
 
-		M_DaoMenu daoFormule = new M_DaoMenu();
-        //récupération de la liste
-        List<M_Menu> formules = daoFormule.getMenus();
+		M_DaoMenu daoMenu = new M_DaoMenu();
+        List<M_Menu> formules = daoMenu.getMenus();
         request.setAttribute("listFormules", formules);
 
     	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);

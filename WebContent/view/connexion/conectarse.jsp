@@ -17,7 +17,7 @@
 				<label for="login">Login :</label> 
 				<input type="text" name="login" id="login"></input><br /> 
 				<label for="mdp">Contraseña :</label> 
-				<input type="password" name="mdp" id="mdp"></input><br />
+				<input type="password" name="mdp" id="mdp"></input><br /><br /><br />
 				<p style="text-align: center;">
 					<input style="float: none ; margin: 0;" type="submit" value="Validar"></input><br />
 				</p>

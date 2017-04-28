@@ -84,6 +84,44 @@ public class M_DaoTypeRetrait extends M_DaoGenerique {
 		return typeRetrait;
 	}
 	
+	public M_TypeRetrait getTypeRetraitByName(String nomTypeRetrait) {
+		M_TypeRetrait typeRetrait = null;
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM TYPERETRAIT WHERE NOMTYPERETRAIT=?");
+			prepStatement.setString(1, nomTypeRetrait);
+			result = prepStatement.executeQuery();
+			result.next();
+			typeRetrait = enregistrementVersObjet(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return typeRetrait;
+	}
+	
 	public List<M_TypeRetrait> getTypeRetraits() {
 		List<M_TypeRetrait> typesRetrait = new ArrayList<M_TypeRetrait>();
 		ResultSet result = null;

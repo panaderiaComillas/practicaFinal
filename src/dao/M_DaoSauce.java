@@ -84,6 +84,44 @@ public class M_DaoSauce extends M_DaoGenerique {
 		return sauce;
 	}
 	
+	public M_Sauce getSauceByName(String nomSauce) {
+		M_Sauce sauce = null;
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM SAUCE WHERE NOMSAUCE=?");
+			prepStatement.setString(1, nomSauce);
+			result = prepStatement.executeQuery();
+			result.next();
+			sauce = enregistrementVersObjet(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return sauce;
+	}
+	
 	public List<M_Sauce> getSauces() {
 		List<M_Sauce> sauces = new ArrayList<M_Sauce>();
 		ResultSet result = null;

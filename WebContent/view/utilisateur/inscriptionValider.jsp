@@ -59,9 +59,7 @@
 		</fieldset>
 
 		<br />
-
-		<input type="button" value="Retour à l'accueil"
-			onclick="javascript:location.href='index.jsp'"> <br />
+		<input type="button" value="Retour à l'accueil" onclick="history.go(-1)"> <br />
 		</section>
 		<footer> <%@include file="/view/templates/footer.jsp"%>
 		</footer>

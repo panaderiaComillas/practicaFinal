@@ -48,6 +48,7 @@ public class C_Connection extends HttpServlet {
 			M_User unUser = daoUser.verifierLogin(login, mdp);
 			if (unUser != null) {
 				session.setAttribute("login", login);
+				session.setAttribute("idUser", unUser.getIdUser());
 				session.setAttribute("role", unUser.getRole().getIdRole());
 		        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 			} else {

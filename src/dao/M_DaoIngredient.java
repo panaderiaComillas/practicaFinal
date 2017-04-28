@@ -83,6 +83,44 @@ public class M_DaoIngredient extends M_DaoGenerique {
 		}
 		return ingredient;
 	}
+	
+	public M_Ingredient getIngredientByName(String nomIng) {
+		M_Ingredient ingredient = null;
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM INGREDIENT WHERE NOMINGREDIENT=?");
+			prepStatement.setString(1, nomIng);
+			result = prepStatement.executeQuery();
+			result.next();
+			ingredient = enregistrementVersObjet(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return ingredient;
+	}
 
 	public List<M_Ingredient> getIngredients() {
 		List<M_Ingredient> ingredients = new ArrayList<M_Ingredient>();

@@ -83,6 +83,44 @@ public class M_DaoDessert extends M_DaoGenerique {
 		}
 		return dessert;
 	}
+	
+	public M_Dessert getDessertByName(String nomDessert) {
+		M_Dessert dessert = null;
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM DESSERT WHERE NOMPRODUIT=?");
+			prepStatement.setString(1, nomDessert);
+			result = prepStatement.executeQuery();
+			result.next();
+			dessert = enregistrementVersObjet(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return dessert;
+	}
 
 	public List<M_Dessert> getDesserts() {
 		List<M_Dessert> desserts = new ArrayList<M_Dessert>();

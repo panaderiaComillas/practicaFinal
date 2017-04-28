@@ -85,6 +85,44 @@ public class M_DaoMenu extends M_DaoGenerique {
 		return menu;
 	}
 	
+	public M_Menu getMenuByName(String nomMenu) {
+		M_Menu menu = null;
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement("SELECT * FROM MENU WHERE NOMMENU=?");
+			prepStatement.setString(1, nomMenu);
+			result = prepStatement.executeQuery();
+			result.next();
+			menu = enregistrementVersObjet(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return menu;
+	}
+	
 	public List<M_Menu> getMenus() {
 		List<M_Menu> menus = new ArrayList<M_Menu>();
 		ResultSet result = null;

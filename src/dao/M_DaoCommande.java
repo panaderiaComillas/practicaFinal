@@ -97,6 +97,46 @@ public class M_DaoCommande extends M_DaoGenerique {
 		}
 		return commande;
 	}
+	
+	public int getIdCommande(M_Commande commande) {
+		int idCommande = 0;
+		ResultSet result = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			prepStatement = connection.prepareStatement(""
+					+ "SELECT IDCOMMANDE FROM COMMANDE "
+					+ "WHERE DATEHEURE=? AND HEURERETRAIT=? AND IDUSER=? AND IDTYPERETRAIT=? AND ETATCOMMANDE=?");
+			objetVersEnregistrement(commande);
+			result = prepStatement.executeQuery();
+			result.next();
+			idCommande = result.getInt("idcommande");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				try {
+					result.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (prepStatement != null) {
+				try {
+					prepStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return idCommande;
+	}
 
 	public List<M_Commande> getCommandesByLogin(String login) {
 		List<M_Commande> commandes = new ArrayList<M_Commande>();
