@@ -19,7 +19,7 @@
 		</nav>
 		<section>
 		<h1 style="color: red;">Pedidos efectuados</h1>
-		<table id="tablePedidos">
+		<table  cellspacing="10" id="tablePedidos" style="text-align:center;">
 			<tr>
 				<th class="nowrapCell">N° de pedido</th>
 				<th class="nowrapCell">Data/hora pedido</th>

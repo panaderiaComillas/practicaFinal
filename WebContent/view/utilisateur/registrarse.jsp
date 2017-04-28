@@ -13,12 +13,20 @@
 		</nav>
 		<section>
 		<form class="inscription" method="post"
-			action=".?controleur=utilisateur&action=validationInscription"
+			action="${pageContext.request.contextPath}/C_InscriptionValider"
 			name="CreateUser">
 			<h1 style="color: red;">Registro</h1>
 
 			<fieldset>
 				<legend>Mis informaciones generales</legend>
+				<% 
+		      		String error = (String) request.getAttribute("error");
+		      		if (error != null) { %>      			
+		            	<strong style="color:red;"><% out.println(error); %></strong>
+		            	<br>
+		            	<br>
+		            <%} 
+		        %>
 				<label for="nom">Apellido(s) :</label>
 				<input type="text" name="nom"id="nom"></input><br /> 
 				<label for="prenom">Nombre :</label>
