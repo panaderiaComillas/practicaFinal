@@ -18,6 +18,7 @@ import metier.M_User;
 @WebServlet("/C_Information")
 public class C_Information extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,7 +39,8 @@ public class C_Information extends HttpServlet {
         M_User utilisateur = daoUser.getOneByLogin((String) session.getAttribute("login"));
         request.setAttribute("utilisateur", utilisateur);
 		
-		this.getServletContext().getRequestDispatcher(maVue).forward(request,response);
+        request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 	/**
@@ -73,7 +75,8 @@ public class C_Information extends HttpServlet {
 		}
         request.setAttribute("utilisateur", utilisateur);
 
-		this.getServletContext().getRequestDispatcher(maVue).forward(request,response);
+        request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 }

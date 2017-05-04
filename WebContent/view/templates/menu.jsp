@@ -55,25 +55,27 @@
 		
 		
 		<%
-		if ( session.getAttribute("login")!=null && ( (int)session.getAttribute("role") == 1 || (int)session.getAttribute("role") == 3 ) ) {
-			// BAKER
+// 		if ( session.getAttribute("login")!=null && ( (int)session.getAttribute("role") == 1 || (int)session.getAttribute("role") == 3 ) ) {
+// 			// BAKER
         %>
-            <hr/>
-            <li><a href="">Gérer les formules</a></li><br>
-            <!-- AJOUTER / MODIFIER / SUPPRIMER UN FORMULE -->
-            <li><a href="">Gérer les produits</a></li><br>
-            <!-- AJOUTER / MODIFIER / SUPPRIMER UNE PRODUIT -->
-            <li><a href="">Gérer les commandes</a></li><br>
-            <!-- AJOUTER / MODIFIER / SUPPRIMER UNE COMMANDE -->
+<!--             <hr/> -->
+<!--             <li><a href="">Gérer les formules</a></li><br> -->
+<!--             AJOUTER / MODIFIER / SUPPRIMER UN FORMULE -->
+<!--             <li><a href="">Gérer les produits</a></li><br> -->
+<!--             AJOUTER / MODIFIER / SUPPRIMER UNE PRODUIT -->
+<!--             <li><a href="">Gérer les commandes</a></li><br> -->
+<!--             AJOUTER / MODIFIER / SUPPRIMER UNE COMMANDE -->
         <%
-        }
-		if ( session.getAttribute("login")!=null && (int)session.getAttribute("role") == 1 ) {
-			// ADMIN
+//         }
+// 		if ( session.getAttribute("login")!=null && (int)session.getAttribute("role") == 1 ) {
+// 			// ADMIN
         %>
-            <hr>
-            <li><a href="">Gérer les utilisateurs</a></li><br>
-            <!-- AJOUTER / MODIFIER / SUPPRIMER UNE PERSONNE -->
-        <% } %>
+<!--             <hr> -->
+<!--             <li><a href="">Gérer les utilisateurs</a></li><br> -->
+<!--             AJOUTER / MODIFIER / SUPPRIMER UNE PERSONNE -->
+        <%
+//         }
+        %>
         
 	</ul>
 </div>

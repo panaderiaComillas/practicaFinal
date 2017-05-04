@@ -44,6 +44,7 @@ import metier.M_User;
 @WebServlet("/C_Commander3")
 public class C_Commander3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -73,8 +74,8 @@ public class C_Commander3 extends HttpServlet {
 		String nomMenu = request.getParameter("nomMenu");
 		request.setAttribute("nomMenu", nomMenu);
 //		M_DaoMenu daoMenu = new M_DaoMenu();
-//        M_Menu menu = daoMenu.getMenuByName(nomMenu);
-//        int idMenu = menu.getIdMenu();
+//		M_Menu menu = daoMenu.getMenuByName(nomMenu);
+//		int idMenu = menu.getIdMenu();
         
 		String[] ingredients = request.getParameterValues("ingredients");
 		request.setAttribute("ingredients", ingredients);
@@ -95,18 +96,22 @@ public class C_Commander3 extends HttpServlet {
 //            idSauce = sauce.getIdSauce();
 //            listIdSauces.add(idSauce);
 //		}
+//		
+//		List<Integer> listIdProduits = new ArrayList<Integer>();
 		
 		String nomBoisson=request.getParameter("boisson");
 		request.setAttribute("boisson", nomBoisson);
 //		M_DaoBoisson daoBoisson = new M_DaoBoisson();
-//        M_Boisson boisson = daoBoisson.getBoissonByName(nomBoisson);
-//        int idBoisson = boisson.getIdProduit();
+//		M_Boisson boisson = daoBoisson.getBoissonByName(nomBoisson);
+//		int idBoisson = boisson.getIdProduit();
+//		listIdProduits.add(idBoisson);
 		
 		String nomDessert=request.getParameter("dessert");
 		request.setAttribute("dessert", nomDessert);
 //		M_DaoDessert daoDessert = new M_DaoDessert();
-//        M_Dessert dessert = daoDessert.getDessertByName(nomDessert);
-//        int idDessert = dessert.getIdProduit();
+//		M_Dessert dessert = daoDessert.getDessertByName(nomDessert);
+//		int idDessert = dessert.getIdProduit();
+//		listIdProduits.add(idDessert);
 		
 		String nomTypeRetrait=request.getParameter("typeRetrait");
 		request.setAttribute("typeRetrait", nomTypeRetrait);
@@ -132,7 +137,7 @@ public class C_Commander3 extends HttpServlet {
 //		
 //		//insert posseder * nbProduit
 //		M_DaoPosseder daoPosseder = new M_DaoPosseder();
-//		for (Integer idSauce : listIdSauces) {
+//		for (Integer idProduit : listIdProduits) {
 //			M_Posseder posseder = new M_Posseder(idMenu, idProduit);
 //			daoPosseder.insertPosseder(posseder);	
 //		}
@@ -147,7 +152,8 @@ public class C_Commander3 extends HttpServlet {
 //		M_DaoContenir daoContenir = new M_DaoContenir();
 //		daoContenir.insertContenir(contenir);
 		
-        this.getServletContext().getRequestDispatcher(maVue).forward(request,response);	
+		request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 }

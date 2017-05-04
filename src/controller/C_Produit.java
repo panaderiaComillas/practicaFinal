@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +24,7 @@ import metier.M_Sandwich;
 @WebServlet("/C_Produit")
 public class C_Produit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,7 +38,6 @@ public class C_Produit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String maVue = "/view/utilisateur/afficherProduits.jsp";
 
 		M_DaoSandwich daoSandwich = new M_DaoSandwich();
@@ -61,8 +60,8 @@ public class C_Produit extends HttpServlet {
         List<M_Boisson> Boissons = daoBoisson.getBoissons();
         request.setAttribute("listBoissons", Boissons);
 
-    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
-		dispatcher.forward(request,response);		
+        request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 	/**

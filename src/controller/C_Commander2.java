@@ -28,6 +28,7 @@ import metier.M_TypeRetrait;
 @WebServlet("/C_Commander2")
 public class C_Commander2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,8 +50,6 @@ public class C_Commander2 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		String maVue = "/view/utilisateur/commander2.jsp";
 		
 		String nomMenu=request.getParameter("menus");
@@ -86,8 +85,8 @@ public class C_Commander2 extends HttpServlet {
         List<M_Boisson> boissons = daoBoisson.getBoissons();
         request.setAttribute("listBoissons", boissons);
         
-        this.getServletContext().getRequestDispatcher(maVue).forward(request,response);	
-
+        request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 }

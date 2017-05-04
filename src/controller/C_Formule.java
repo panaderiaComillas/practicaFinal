@@ -20,6 +20,7 @@ import metier.M_Menu;
 @WebServlet("/C_Formule")
 public class C_Formule extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,16 +34,14 @@ public class C_Formule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String maVue = "/view/utilisateur/afficherFormules.jsp";
 
 		M_DaoMenu daoFormule = new M_DaoMenu();
-        //récupération de la liste
         List<M_Menu> formules = daoFormule.getMenus();
         request.setAttribute("listFormules", formules);
 
-    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
-		dispatcher.forward(request,response);	      
+        request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 	/**

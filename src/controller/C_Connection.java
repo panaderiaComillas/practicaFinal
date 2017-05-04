@@ -18,6 +18,7 @@ import metier.M_User;
 @WebServlet("/C_Connection")
 public class C_Connection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
 	String maVue = "/view/connexion/conectarse.jsp";
        
     /**
@@ -50,16 +51,17 @@ public class C_Connection extends HttpServlet {
 				session.setAttribute("login", login);
 				session.setAttribute("idUser", unUser.getIdUser());
 				session.setAttribute("role", unUser.getRole().getIdRole());
-		        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+				request.setAttribute("maVue", "/index.jsp" );
 			} else {
 				String message="ECHEC d'identification : login ou mot de passe inconnu<br>";
 				request.setAttribute("message", message);
-				this.getServletContext().getRequestDispatcher(maVue).forward(request,response);	 
+				request.setAttribute("maVue", maVue );
 			}
 		} else {
 			String message="Attention : le login et/ou le mot de passe ne sont pas renseignés";
 			request.setAttribute("message", message);
-			this.getServletContext().getRequestDispatcher(maVue).forward(request,response);	 
+			request.setAttribute("maVue", maVue );
 		}
+		this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 }

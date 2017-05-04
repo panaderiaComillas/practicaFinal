@@ -19,6 +19,7 @@ import metier.M_Commande;
 @WebServlet("/C_Commande")
 public class C_Commande extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String template = "/view/templates/template.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,7 +44,8 @@ public class C_Commande extends HttpServlet {
 //        List<M_Produit> listProduits = daoProduit.getProduitsCommandeByIdCommande(uneCommande.getIdCommande());
 //        request.setAttribute("listProduits", listProduits);
 //        
-		this.getServletContext().getRequestDispatcher(maVue).forward(request,response);
+        request.setAttribute("maVue", maVue );
+        this.getServletContext().getRequestDispatcher(template).forward(request,response);
 	}
 
 	/**

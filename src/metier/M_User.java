@@ -15,6 +15,17 @@ public class M_User {
 		this.idUser = idUser;
 	}
 
+	public M_User(String nomUser, String prenomUser, String email, String tel, String login, String mdp, M_Role role) {
+		super();
+		this.nomUser = nomUser;
+		this.prenomUser = prenomUser;
+		this.email = email;
+		this.tel = tel;
+		this.login = login;
+		this.mdp = mdp;
+		this.role = role;
+	}
+
 	public M_User (int idUser, String nomUser, String prenomUser, String email, String tel, String login, String mdp, M_Role role) {
         this.idUser = idUser;
         this.nomUser = nomUser;

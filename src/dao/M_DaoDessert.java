@@ -89,7 +89,7 @@ public class M_DaoDessert extends M_DaoGenerique {
 		ResultSet result = null;
 		try {
 			connection = DriverManager.getConnection(url, user, password);
-			prepStatement = connection.prepareStatement("SELECT * FROM DESSERT WHERE NOMPRODUIT=?");
+			prepStatement = connection.prepareStatement("SELECT * FROM PRODUIT WHERE NOMPRODUIT=?");
 			prepStatement.setString(1, nomDessert);
 			result = prepStatement.executeQuery();
 			result.next();

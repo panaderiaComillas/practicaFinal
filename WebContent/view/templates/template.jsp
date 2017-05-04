@@ -7,6 +7,7 @@
 <title>La Cesta de Pan</title>
 </head>
 <body>
+<%String maVue = (String)request.getAttribute("maVue");%>
 	<div id="global">
 		<header>
 			<%@include file="header.jsp" %>
@@ -15,7 +16,7 @@
 			<%@include file="menu.jsp" %>
 		</nav>
 		<section>
-			<%@include file="/index.jsp" %>
+			<jsp:include page="<%=maVue%>" />
 		</section>
 		<footer>
 			<%@include file="footer.jsp"%>
